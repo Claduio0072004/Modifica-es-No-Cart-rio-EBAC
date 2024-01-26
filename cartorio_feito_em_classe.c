@@ -84,7 +84,7 @@ int cadastro()
 		printf("\n\n\n\t      Usuário Já Cadastrado!\n\n\n");
 		printf("\n\n   Estamos te Encaminhando de Volta para o Menu.\n\n\n"); //Esta mensagem de retorno aparece em ambos os casos quando chega no fim da operação por isso achei bom limpar a tela acima
 		system("pause"); 
-		main();
+		return 1;
 }
 
 int alterar() //achei uma boa ideia adicinar algo para alterar os dados ja cadastrados para que se o usuário tenha errado no registro ele não precise deletar e registrar novamente ou se o sobrenome da pssoa mudou também fique mais facil a alteração
@@ -160,11 +160,14 @@ int alterar() //achei uma boa ideia adicinar algo para alterar os dados ja cadas
 		alterar2(); // levando para o menu de retorno
 		}
 		
+		system("cls");
+		
 		if (file == NULL)
 		{
 			printf("\n\n\n\tO Usuário não está registrado .\n\n\n");
 			printf("\n\n  Estamos te Encaminhando de Volta para o Menu.\n\n\n");
 			system("pause");
+			return 1;
 		}
 }
 
@@ -188,7 +191,7 @@ int consulta()
 		fclose(file);
 		printf("\n\n  Não foi encontrado o arquivo desejado.\n\n\n");
 		system("pause");
-		main();
+		return 1;
 	}
 	
 	system("cls");
@@ -230,7 +233,7 @@ int deletar()
 		printf("\n\n\n\tUsuário Não Encontrado no Sistema.\n\n\n");
 		printf("\n\n   Estamos te Encaminhando de Volta para o Menu.\n\n\n");
 		system("pause");
-		main();
+		return 1;
 	}
 	else
 
@@ -249,7 +252,7 @@ int deletar()
 		break;
 	
 		default:
-		main();
+		return 1;
 		break;
 	}
 	 	
@@ -278,7 +281,7 @@ int cadastro2()
 		break;
 	
 		default:
-		main();
+		return 1;
 		break;
 	
 	}
@@ -305,7 +308,7 @@ int alterar2()
 		break;
 	
 		default:
-		main();
+		return 1;
 		break;
 	
 	}
@@ -331,7 +334,7 @@ int consulta2()
 		break;
 	
 		default:
-		main();
+		return 1;
 		break;
 	
 	}
@@ -358,7 +361,7 @@ int deletar2()
 		break;
 	
 		default:
-		main();
+		return 1;
 		break;
 	}
 }
@@ -371,8 +374,10 @@ int main()
 	char senha[20] ="a";
 	int comparacao;
 	
+	setlocale(LC_ALL, "Portuguese");
+	
 	printf("\n\t### Cartório da EBAC ###\n\n");
-	printf("\tLogin de Administrador\n\n\n");
+	printf("\n\tLogin de Administrador\n\n\n");
 	printf("  Digite sua Senha:");
 	scanf("%s",senha);
 	
@@ -393,7 +398,8 @@ int main()
 		    printf("\t2 - Alterar dados do Usuário.\n");
 		    printf("\t3 - Consultar Usuário.\n");
 		    printf("\t4 - Deletar Usuário.\n");
-		    printf("\t5 - Sair do Sistema.\n\n\n");
+		    printf("\t5 - Deslogar do Sistema\n");
+		    printf("\t6 - Sair do Sistema.\n\n\n");
 		    printf("  Opção:"); //Final do menu
 	    
 		    scanf("%d", &opcao); //Armazenando Informações
@@ -419,12 +425,16 @@ int main()
 			    break;
 			    
 			    case 5:
+			    main();
+			    break;
+			    
+			    case 6:
 			    printf("\n\n\n\n\tObrigado por Usar o Sistema de Cartório EBAC!!\n\n\n");
 			    return 0;
 			    break;
 		    
 			    default:
-		   	 printf("\n\n\n\n\tOpção invalida tente novamente!\n\n\n");
+		   	 	printf("\n\n\n\n\tOpção invalida tente novamente!\n\n\n");
 	    		system("pause");
 				break;	 	
     		} //Aparentemente o fim das opções =)
