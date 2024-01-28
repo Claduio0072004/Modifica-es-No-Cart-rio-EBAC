@@ -164,6 +164,7 @@ int alterar() //achei uma boa ideia adicinar algo para alterar os dados ja cadas
 		
 		if (file == NULL)
 		{
+			fclose(file);
 			printf("\n\n\n\tO Usuário não está registrado .\n\n\n");
 			printf("\n\n  Estamos te Encaminhando de Volta para o Menu.\n\n\n");
 			system("pause");
